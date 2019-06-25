@@ -8,5 +8,5 @@ values
 insert into member
 (ID, IS_ENABLED, ROLES, UID, UPW, USERNAME)
 values
-(null, 'Y', 'USER,ADMIN', 'admin', '{noop}123', '어드민')
+(null, 'Y', 'USER;ADMIN', 'admin', '{noop}123', '어드민')
 ;

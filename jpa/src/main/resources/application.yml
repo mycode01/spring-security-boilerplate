@@ -8,17 +8,10 @@ logging:
     org:
       springframework:
         security: info
-#      hibernate:
-#        SQL: debug
-#        type: trace
+      hibernate:
+        SQL: debug
+        type: trace
     web: debug
-    com:
-      eduai:
-        intodevice:
-          mapper: trace
-
-mybatis:
-  type-aliases-package: com.eduai.intodevice.dto
 ---
 # no security for test
 #spring:
@@ -34,51 +27,23 @@ mybatis:
 #      roles: USER
 ---
 # env local
+
 spring:
   profiles: local
-  db1:
-    datasource:
-      jdbc-url: jdbc:h2:tcp://localhost/~/test1
-      username: sa
-      password:
-      driver-class-name: org.h2.Driver
-      # uncomment when need init
-      platform: local
-      initialization-mode: none
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    database: h2
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    # uncomment when need init
+    platform: local
+    initialization-mode: always
 
-  db2:
-    datasource:
-      jdbc-url: jdbc:h2:tcp://localhost/~/test2
-      username: sa
-      password:
-      driver-class-name: org.h2.Driver
-      # uncomment when need init
-      platform: local2
-      initialization-mode: none
-
-
----
-# env prod
-spring:
-  profiles: prod
-  db1:
-    datasource:
-      jdbc-url: jdbc:h2:tcp://localhost/~/test1
-      username: sa
-      password:
-      driver-class-name: org.h2.Driver
-      # uncomment when need init
-      platform: prod
-      initialization-mode: always
-  db2:
-    datasource:
-  #    url: jdbc:mysql://ls-1385208b74ac4933242088a5f846166785295ccb.cbnpdrzxd040.us-east-1.rds.amazonaws.com:3306/EDUAI?useSSL=false&serverTimezone=UTC
-      url: jdbc:mysql://test0617.cggnd13lze7k.ap-northeast-2.rds.amazonaws.com:3306/oauth2?useSSL=false&serverTimezone=UTC
-      username: admin
-      password: Tlqkf1242
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      platform: prod2
-      initialization-mode: always
 
 
 # for hotswap below
