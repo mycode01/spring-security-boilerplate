@@ -1,0 +1,60 @@
+spring:
+  profiles:
+    active: local
+
+logging:
+  level:
+    ROOT: info
+    org:
+      springframework:
+        security: info
+      hibernate:
+        SQL: debug
+        type: trace
+    web: debug
+---
+# no security for test
+#spring:
+#  autoconfigure:
+#    exclude:
+#      - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+#      - org.springframework.boot.actuate.autoconfigure.ManagementWebSecurityAutoConfiguration
+#spring:
+#  security:
+#    user:
+#      name: user
+#      password: pass
+#      roles: USER
+---
+# env local
+
+spring:
+  profiles: local
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    database: h2
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    # uncomment when need init
+    platform: local
+    initialization-mode: always
+
+
+
+# for hotswap below
+---
+spring:
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+  thymeleaf:
+    cache: false
+
+
