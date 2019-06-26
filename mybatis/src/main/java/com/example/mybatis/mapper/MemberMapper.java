@@ -1,6 +1,6 @@
-package com.eduai.intodevice.mapper.member;
+package com.example.mybatis.mapper;
 
-import com.eduai.intodevice.dto.Member;
+import com.example.mybatis.domain.Member;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

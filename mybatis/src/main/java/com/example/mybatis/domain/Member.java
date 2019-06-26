@@ -1,36 +1,40 @@
-package com.example.jpa.entity;
+package com.example.mybatis.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.apache.ibatis.type.Alias;
 
-import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Data
 @ToString(exclude = {"upw"})
 @EqualsAndHashCode(of={"uid", "upw", "username"})
-@Entity
+@Alias("member")
 public class Member {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(unique = true)
     private String uid;
     @JsonIgnore
-    @Column(nullable = false)
     private String upw;
-    @Column(nullable = false)
     private String username;
-    @Column(nullable = false)
     private String isEnabled;
 
     //and more
-    @Convert(converter = StringListConverter.class)
     private List<String> roles = new ArrayList<>();
+
+    public void setRoles(String roles){
+        this.roles = Arrays.asList(roles.split(";"));
+    }
+    public String getRoles(){
+        if(roles == null || roles.isEmpty()){
+            return "";
+        } else {
+            return String.join(";", roles);
+        }
+    }
 
     public void addRole(String role){
         if(roles == null){

@@ -8,10 +8,15 @@ logging:
     org:
       springframework:
         security: info
-      hibernate:
-        SQL: debug
-        type: trace
     web: debug
+    com:
+      example:
+        mybatis:
+          mapper: trace
+
+
+mybatis:
+  type-aliases-package: com.example.mybatis.domain
 ---
 # no security for test
 #spring:
@@ -30,11 +35,6 @@ logging:
 
 spring:
   profiles: local
-  jpa:
-    hibernate:
-      ddl-auto: create
-    show-sql: true
-    database: h2
   datasource:
     url: jdbc:h2:tcp://localhost/~/test1
     username: sa
@@ -42,7 +42,7 @@ spring:
     driver-class-name: org.h2.Driver
     # uncomment when need init
     platform: local
-    initialization-mode: always
+    initialization-mode: never
 
 
 
